@@ -6,14 +6,17 @@ var paddle1=250;
 var paddleHeight=100;
 var paddle2=250;
 var score1=0,score2=0;
+let missP=2,missComp=2;
+
 
 setInterval(function(){drawEverything();move();},1000/40);
+
 canvas.addEventListener('mousemove',function(evt){
   var pos=calMousePos(evt);
   paddle1=pos.y-paddleHeight/2;
 });
 
-function drawEverything(){
+function drawEverything(){  
   colorReact(0,0,canvas.width,canvas.height,'black');
   colorReact(0,paddle1,10,paddleHeight,'white');
   colorReact(canvas.width-10,paddle2,10,paddleHeight,'white');
@@ -21,6 +24,9 @@ function drawEverything(){
   context.font="30px Arial";
   context.fillText(score1,100,80);
   context.fillText(score2, canvas.width-100,80);
+  context.font="15px Arial";
+  context.fillText(`life : ${missP}`,50,40);
+  context.fillText(`life : ${missComp}`,canvas.width-80,40);  
 }
 function computerMove(){
   var paddle2Ceneter=paddle2+(paddleHeight/2);
@@ -31,9 +37,28 @@ function computerMove(){
   }
 }
 function move(){
+  if(missP===-1){
+    if(score1>score2)
+    alert("You win");
+    else alert("You lost");
+    score1=0,score2=0;
+    missP=2,missComp=2;
+  }
+  else if(missComp===-1){
+    if(score1>score2)
+    alert("You win");
+    else alert("You lost");
+    score1=0,score2=0;
+    missP=2,missComp=2;  
+  }
+  else if((score1-score2)==5)
+  alert("You win");
+  else if((score2-score1)==5)
+  alert("You lost");
   computerMove();
   px +=ballSpeedX;
-  py +=ballSpeedY;
+  py +=ballSpeedY; 
+  
   if(px<0){
     if(py>=paddle1&&py<=paddle1+paddleHeight){
       ballSpeedX=-ballSpeedX;
@@ -41,6 +66,7 @@ function move(){
       ballSpeedY=delta1Y*0.25;
     }else{
       score2++;
+      missP--;
       reset();
     }
   }
@@ -51,6 +77,7 @@ function move(){
       ballSpeedY=delta2Y*0.10;
     }else{
       score1++;
+      missComp--;
       reset();
     }
   }
