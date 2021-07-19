@@ -5,10 +5,10 @@
 ## *Rules of the game*
 ---
 1. Both the player and computer are given three chances/life. 
-2. Every time you miss to toss the ball or ball touch the wall on your site life will decrement by 1.
-2. If life is zero and ball hit the wall on your site then you lost the game if your score is less than the computer.Otherwise you will win the game.
+2. Every time you miss to toss the ball or ball touches the wall on your site life will decrement by 1.
+2. If life is zero and ball hits the wall on your site then you lost the game if your score is less than the computer.Otherwise you will win the game.
 3. if your score is higher than computer and score difference is five then you will win the game.
-4. Every time ball touch the wall right side or left side ball will again reappear from middle and
+4. Every time ball touches the wall of right side or left side ,ball will again reappear from middle and
 from different direction.
 
 ## Deployment site
